@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import quickfix.Message;
 import quickfix.Session;
+import quickfix.field.TestReqID;
 import quickfix.fix42.TestRequest;
 
 @Component
@@ -13,10 +14,10 @@ public class MessageSender {
     @Autowired
     private FixRunner fixRunner;
 
-    @Value("@{sender.comp.id}")
+    @Value("${sender.comp.id}")
     private String senderCompID;
 
-    @Value("@{target.comp.id}")
+    @Value("${target.comp.id}")
     private String targetCompID;
 
     private void sendWithSenderAndTarget(Message msg) throws Exception {
@@ -24,7 +25,7 @@ public class MessageSender {
     }
 
     public void sendTest() throws Exception {
-        Message msg = new TestRequest();
+        Message msg = new TestRequest(new TestReqID("12345"));
         sendWithSenderAndTarget(msg);
     }
 

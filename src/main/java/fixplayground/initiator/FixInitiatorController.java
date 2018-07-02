@@ -20,6 +20,6 @@ public class FixInitiatorController {
         switch (command) {
             case "test": this.messageSender.sendTest();
         }
-        throw new RuntimeException("Unknown command");
+        return "Unknown command";
     }
 }
