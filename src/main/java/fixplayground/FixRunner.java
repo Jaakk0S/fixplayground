@@ -1,4 +1,4 @@
-package fixtest;
+package fixplayground;
 
 import org.springframework.context.ApplicationContext;
 import quickfix.LogFactory;

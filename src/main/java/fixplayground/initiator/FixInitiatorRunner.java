@@ -1,6 +1,6 @@
-package fixtest.client;
+package fixplayground.initiator;
 
-import fixtest.AbstractFixRunner;
+import fixplayground.AbstractFixRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -8,8 +8,8 @@ import quickfix.Initiator;
 import quickfix.SocketInitiator;
 
 @Component
-@Profile("client")
-public class FixClientRunner extends AbstractFixRunner {
+@Profile("initiator")
+public class FixInitiatorRunner extends AbstractFixRunner {
 
     @Override
     public void run(ApplicationContext ctx) throws Exception {

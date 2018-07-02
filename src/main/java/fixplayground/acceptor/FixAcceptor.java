@@ -1,17 +1,17 @@
-package fixtest.server;
+package fixplayground.acceptor;
 
-import fixtest.FixApplication;
+import fixplayground.FixApplication;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import quickfix.*;
 
 @Component
-@Profile("server")
-public class FixServer implements FixApplication {
+@Profile("acceptor")
+public class FixAcceptor implements FixApplication {
 
     @Override
     public String propertyFileName() {
-        return "/settings-server.properties";
+        return "/settings-acceptor.properties";
     }
 
     @Override

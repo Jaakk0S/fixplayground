@@ -1,4 +1,4 @@
-package fixtest;
+package fixplayground;
 
 import quickfix.Application;
 

@@ -1,17 +1,17 @@
-package fixtest.client;
+package fixplayground.initiator;
 
-import fixtest.FixApplication;
+import fixplayground.FixApplication;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import quickfix.*;
 
 @Component
-@Profile("client")
-public class FixClient implements FixApplication {
+@Profile("initiator")
+public class FixInitiator implements FixApplication {
 
     @Override
     public String propertyFileName() {
-        return "/settings-client.properties";
+        return "/settings-initiator.properties";
     }
 
     @Override
