@@ -34,7 +34,9 @@ This will:
 
 ## Using the initiator over REST
 
-
+    /ping
+    /           command=test   send TestReq
+    /fieldname  code=CODE      return field name for CODE
 
 ## Sniffing the port for raw FIX traffic
 
