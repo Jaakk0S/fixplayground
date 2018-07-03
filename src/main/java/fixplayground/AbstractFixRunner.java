@@ -11,9 +11,13 @@ public abstract class AbstractFixRunner implements FixRunner {
     protected SessionSettings sessionSettings;
     protected LogFactory logFactory;
     protected MessageFactory messageFactory;
+    protected DataDictionary dataDictionary;
 
     @Value("${settings.filename}")
     public String settingsFilename;
+
+    @Value("${data.dictionary.filename}")
+    public String dataDictionaryFilename;
 
     protected void initDefaults() throws Exception {
         this.application = new FixAcceptor();
@@ -21,6 +25,7 @@ public abstract class AbstractFixRunner implements FixRunner {
         this.messageStoreFactory = new FileStoreFactory(this.sessionSettings);
         this.logFactory = new FileLogFactory(this.sessionSettings);
         this.messageFactory = new DefaultMessageFactory();
+        this.dataDictionary = new DataDictionary(getClass().getResourceAsStream(dataDictionaryFilename));
     }
 
     @Override
@@ -47,4 +52,7 @@ public abstract class AbstractFixRunner implements FixRunner {
     public MessageFactory getMessageFactory() {
         return messageFactory;
     }
+
+    @Override
+    public DataDictionary getDataDictionary() { return dataDictionary; }
 }

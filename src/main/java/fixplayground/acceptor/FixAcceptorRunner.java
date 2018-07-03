@@ -19,5 +19,4 @@ public class FixAcceptorRunner extends AbstractFixRunner {
         acceptor.start();
     }
 
-
 }

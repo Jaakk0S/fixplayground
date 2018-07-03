@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 public class FixBaseApp {
 
     @Autowired
-    private FixRunner fixRunner;
+    private FixRunner runner;
 
     public static void main(String[] args) {
         SpringApplication.run(FixBaseApp.class, args);
@@ -20,7 +20,7 @@ public class FixBaseApp {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
-            this.fixRunner.run(ctx);
+            this.runner.run(ctx);
         };
     }
 
