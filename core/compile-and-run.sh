@@ -1,5 +1,11 @@
 #!/bin/bash
 
+logdir=`find src -name settings-acceptor.properties|xargs grep FileLogPath|cut -d '=' -f 2`
+jarfile=`find target/ -name "fixplayground*jar"|head -n 1`
+if [ ! -d $logdir ]; then
+	mkdir $logdir
+fi
+
 function ping {
 	pollsecs=30
 	port=$1
@@ -13,9 +19,9 @@ function ping {
 mvn clean package || exit 1
 . kill.sh
 echo "Starting acceptor"
-java -Dspring.profiles.active=acceptor -jar target/fixplayground-1.0-SNAPSHOT.jar >log/acceptor.log&
+java -Dspring.profiles.active=acceptor -jar $jarfile >$logdir/acceptor.log&
 echo "Starting initiator"
-java -Dspring.profiles.active=initiator -jar target/fixplayground-1.0-SNAPSHOT.jar >log/initiator.log&
+java -Dspring.profiles.active=initiator -jar $jarfile >$logdir/initiator.log&
 echo "Polling acceptor"
 ping 8080
 echo "Polling initiator"
