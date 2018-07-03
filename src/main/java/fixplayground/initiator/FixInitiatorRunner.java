@@ -13,9 +13,9 @@ public class FixInitiatorRunner extends AbstractFixRunner {
 
     @Override
     public void run(ApplicationContext ctx) throws Exception {
-        super.run(ctx);
+        super.initDefaults();
         Initiator initiator = new SocketInitiator(
-                fixApplication, storeFactory, sessionSettings, logFactory, messageFactory
+                application, messageStoreFactory, sessionSettings, logFactory, messageFactory
         );
         initiator.start();
     }

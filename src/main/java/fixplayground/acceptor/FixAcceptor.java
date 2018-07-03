@@ -1,18 +1,9 @@
 package fixplayground.acceptor;
 
-import fixplayground.FixApplication;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 import quickfix.*;
 
-@Component
-@Profile("acceptor")
-public class FixAcceptor implements FixApplication {
+public class FixAcceptor implements Application {
 
-    @Override
-    public String propertyFileName() {
-        return "/settings-acceptor.properties";
-    }
 
     @Override
     public void onCreate(SessionID sessionID) {

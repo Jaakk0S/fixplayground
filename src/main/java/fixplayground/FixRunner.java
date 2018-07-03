@@ -1,15 +1,13 @@
 package fixplayground;
 
 import org.springframework.context.ApplicationContext;
-import quickfix.LogFactory;
-import quickfix.MessageFactory;
-import quickfix.MessageStoreFactory;
-import quickfix.SessionSettings;
+import quickfix.*;
 
 public interface FixRunner {
-    public void run(ApplicationContext ctx) throws Exception;
+    public Application getApplication();
+    public MessageStoreFactory getMessageStoreFactory();
     public SessionSettings getSessionSettings();
-    public MessageStoreFactory getStoreFactory();
     public LogFactory getLogFactory();
     public MessageFactory getMessageFactory();
+    public void run(ApplicationContext ctx) throws Exception;
 }

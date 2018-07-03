@@ -6,16 +6,18 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import quickfix.*;
 
-@Component
+@Component("fixRunner")
 @Profile("acceptor")
 public class FixAcceptorRunner extends AbstractFixRunner {
 
     @Override
     public void run(ApplicationContext ctx) throws Exception {
-        super.run(ctx);
+        super.initDefaults();
         Acceptor acceptor = new SocketAcceptor(
-                fixApplication, storeFactory, sessionSettings, logFactory, messageFactory
+                application, messageStoreFactory, sessionSettings, logFactory, messageFactory
         );
         acceptor.start();
     }
+
+
 }

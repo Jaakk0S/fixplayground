@@ -11,9 +11,6 @@ import org.springframework.context.annotation.Bean;
 public class FixBaseApp {
 
     @Autowired
-    private FixApplication fixApplication;
-
-    @Autowired
     private FixRunner fixRunner;
 
     public static void main(String[] args) {

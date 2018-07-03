@@ -1,6 +1,5 @@
 package fixplayground;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import quickfix.Message;
@@ -10,9 +9,6 @@ import quickfix.fix42.TestRequest;
 
 @Component
 public class MessageSender {
-
-    @Autowired
-    private FixRunner fixRunner;
 
     @Value("${sender.comp.id}")
     private String senderCompID;

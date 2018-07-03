@@ -1,18 +1,12 @@
 package fixplayground.initiator;
 
-import fixplayground.FixApplication;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import quickfix.*;
 
 @Component
 @Profile("initiator")
-public class FixInitiator implements FixApplication {
-
-    @Override
-    public String propertyFileName() {
-        return "/settings-initiator.properties";
-    }
+public class FixInitiator implements Application {
 
     @Override
     public void onCreate(SessionID sessionID) {
