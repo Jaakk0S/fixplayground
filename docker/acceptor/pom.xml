@@ -5,6 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>docker-acceptor</artifactId>
+    <packaging>pom</packaging>
 
     <parent>
         <groupId>fixplayground</groupId>

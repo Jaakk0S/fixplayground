@@ -5,6 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>docker-master</artifactId>
+    <packaging>pom</packaging>
 
     <parent>
         <groupId>fixplayground</groupId>
@@ -17,16 +18,16 @@
         <module>initiator</module>
     </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>fixplayground</groupId>
-            <artifactId>fixplayground-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>docker-info</type>  <!-- Depending on docker image -->
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>fixplayground</groupId>
+                <artifactId>fixplayground-core</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-    <!--
     <build>
         <plugins>
             <plugin>
@@ -46,11 +47,11 @@
                     <repository>${project.artifactId}</repository>
                     <tag>${project.version}</tag>
                     <buildArgs>
-                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                        <JAR_FILE>temp/fixplayground-core-${project.version}.jar</JAR_FILE>
                     </buildArgs>
                 </configuration>
             </plugin>
         </plugins>
     </build>
--->
+
 </project>

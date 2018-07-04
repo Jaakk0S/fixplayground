@@ -3,4 +3,4 @@ files
 fixplayground.iml
 logs
 target
-
+**/temp
