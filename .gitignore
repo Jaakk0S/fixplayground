@@ -4,3 +4,4 @@ fixplayground.iml
 logs
 target
 **/temp
+**/package*.json
