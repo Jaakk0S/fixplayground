@@ -20,16 +20,9 @@ public class FixInitiatorRunner extends AbstractFixRunner {
 
     private static final Logger logger = LoggerFactory.getLogger(FixRunner.class);
 
-    //@Value("#{environment.ACCEPTOR_IP}")
-    //private String acceptorIp;
-
     @Override
     public void run(ApplicationContext ctx) throws Exception {
         super.initDefaults();
-        /*if (this.acceptorIp != null) {
-            logger.info("Setting SocketConnectHost from environment: " + this.acceptorIp);
-            this.sessionSettings.setString("SocketConnectHost", this.acceptorIp);
-        }*/
         Initiator initiator = new SocketInitiator(
                 application, messageStoreFactory, sessionSettings, logFactory, messageFactory
         );

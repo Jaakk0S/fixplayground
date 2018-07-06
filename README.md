@@ -1,36 +1,41 @@
 # fixplayground
 
-A FIX protocol demo with Java+QuickFIX/J+Spring Boot. Jaakko Saaristo 2018
+A FIX protocol demo with Java+QuickFIX/J+Spring Boot+Docker. Jaakko Saaristo 2018
 
 - Creates two local Spring Boot (Tomcat) services for
   - FIX Initiator (investment manager, buyer), and
   - FIX Acceptor (execution broker, seller).
-- The services communicate in raw FIX using the local port 12349
+- The services communicate in raw FIX
 - Initiator provides a REST interface to send commands over a REST client
+- React GUI
 
 ## Prerequisites
 
 - Linux
 - Maven 3
-- Ports 8080, 8081 free
-  - Edit application-x.properties to change port
-- Port 12349 free
-  - Edit settings-x.properties to change port
+- Docker
+- Node
+- NPM
  
-## Just building
+## Building Spring Boot jar
 
     mvn clean package
 
 Will produce a single jar under target/. Running initiator/acceptor uses Spring profiles.
 
-## Building and running
+## Building Docker containers
 
-    ./compile-and-run.sh
+    ./docker-package.sh
 
-This will:
-- Build
-- Kill the local services if they're already up
-- Start the services and wait them to come online
+This will build and produce 2 docker containers
+
+## Running Docker containers
+
+    ./docker-run.sh
+
+This will start the two containers with the respective environment. They will be bound to
+- 8080: acceptor
+- 8081: initiator
 
 ## Using the initiator over REST
 
@@ -38,9 +43,4 @@ This will:
     /           command=test   send TestReq
     /fieldname  code=CODE      return field name for CODE
 
-## Sniffing the port for raw FIX traffic
-
-Prereq: install 'ngrep'
-
-    sudo ngrep -d any -P '|' port 12349
 
