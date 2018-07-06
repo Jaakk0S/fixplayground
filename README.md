@@ -2,10 +2,9 @@
 
 A FIX protocol demo with Java+QuickFIX/J+Spring Boot+Docker+React. Jaakko Saaristo 2018
 
-- Creates two local Spring Boot (Tomcat) services for
-  - FIX Initiator (investment manager, buyer), and
-  - FIX Acceptor (execution broker, seller).
+- Simulates FIX by creating an Acceptor (execution broker, seller) and Initiator (investment manager, buyer) services
 - The services communicate in raw FIX
+- The services are Spring Boot applications running in Docker containers
 - Initiator provides a REST interface to send commands over a REST client
 - React GUI
 
@@ -46,4 +45,11 @@ The initiators have different settings.
     /           command=test   send TestReq
     /fieldname  code=CODE      return field name for CODE
 
+## Configuring
 
+Check the files
+
+    core/src/main/resources/\*.properties 
+    docker-run.sh
+
+The FIX session settings (in settings-\*.properties) can be overridden by passing the container environment variables FIXSETTING.name=value.
