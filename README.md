@@ -49,7 +49,7 @@ The initiators have different settings.
 
 Check the files
 
-    core/src/main/resources/\*.properties 
+    core/src/main/resources/*.properties 
     docker-run.sh
 
 The FIX session settings (in settings-\*.properties) can be overridden by passing the container environment variables FIXSETTING.name=value.
