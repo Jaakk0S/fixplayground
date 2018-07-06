@@ -1,16 +1,15 @@
 import React from 'react';
+import Button from 'react-bootstrap/lib/Button';
 class InitiatorPanel extends React.Component {
-
-
 
     constructor(props) {
 
     }
 
     render() {
-        return (<pre>
-            {this.state.text}
-        </pre>);
+        return (
+            <Button>Send TestReq</Button>
+        );
     }
 }
 

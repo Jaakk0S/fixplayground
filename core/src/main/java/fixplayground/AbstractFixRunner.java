@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Value;
 import quickfix.*;
 
 import java.io.*;
+import java.util.Map;
 
 public abstract class AbstractFixRunner implements FixRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger(FixRunner.class);
+    protected static final Logger LOGGER = LoggerFactory.getLogger(FixRunner.class);
 
+    private static final String SESSION_VAR_PREFIX = "FIXSESSION";
     protected Application application;
     protected MessageStoreFactory messageStoreFactory;
     protected SessionSettings sessionSettings;
@@ -26,22 +28,36 @@ public abstract class AbstractFixRunner implements FixRunner {
     @Value("${data.dictionary.filename}")
     public String dataDictionaryFilename;
 
-    @Value("#{environment.ACCEPTOR_IP}")
-    private String acceptorIp;
-
-    protected void initDefaults() throws Exception {
-        this.application = new FixAcceptor();
+    /**
+     * Session settings override with environment variables:
+     * All env vars with name <SESSION_VAR_PREFIX>.X will override session settings with name X
+     * XXX: This is stupid to implement with string-replace but couldn't find another way to get it work
+     */
+    private void createSessionSettings() throws Exception {
         InputStream in = getClass().getResourceAsStream(settingsFilename);
         byte[] bytes = new byte[in.available()];
         in.read(bytes);
         in.close();
         String settings = new String(bytes, "UTF-8");
-        if (this.acceptorIp != null) {
-            logger.info("Setting SocketConnectHost from environment: " + this.acceptorIp);
-            settings = settings.replaceFirst("SocketConnectHost.*=.*",
-                    "SocketConnectHost="+this.acceptorIp);
+        Map<String, String> env = System.getenv();
+        for (String key : env.keySet()) {
+            if (key.startsWith(SESSION_VAR_PREFIX)) {
+                String[] settingStr = key.split("\\.");
+                String setting = settingStr[settingStr.length-1];
+                String value = env.get(key);
+                LOGGER.info("Setting "+setting+" from environment: " + value);
+                settings = settings.replaceFirst(setting + ".*=.*",
+                        setting + "=" + value);
+            }
         }
+        LOGGER.info("Session settings after environment overrides:\n");
+        LOGGER.info(settings);
         this.sessionSettings = new SessionSettings(new ByteArrayInputStream(settings.getBytes()));
+    }
+
+    protected void initDefaults() throws Exception {
+        this.application = new FixAcceptor();
+        this.createSessionSettings();
         this.messageStoreFactory = new FileStoreFactory(this.sessionSettings);
         this.logFactory = new FileLogFactory(this.sessionSettings);
         this.messageFactory = new DefaultMessageFactory();
@@ -74,5 +90,7 @@ public abstract class AbstractFixRunner implements FixRunner {
     }
 
     @Override
-    public DataDictionary getDataDictionary() { return dataDictionary; }
+    public DataDictionary getDataDictionary() {
+        return dataDictionary;
+    }
 }

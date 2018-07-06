@@ -18,15 +18,13 @@ import quickfix.SocketInitiator;
 @Profile("initiator")
 public class FixInitiatorRunner extends AbstractFixRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger(FixRunner.class);
-
     @Override
     public void run(ApplicationContext ctx) throws Exception {
         super.initDefaults();
         Initiator initiator = new SocketInitiator(
                 application, messageStoreFactory, sessionSettings, logFactory, messageFactory
         );
-        logger.info("Starting initiator");
+        LOGGER.info("Starting initiator");
         initiator.start();
     }
 }
