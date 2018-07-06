@@ -5,6 +5,7 @@ A FIX protocol demo with Java+QuickFIX/J+Spring Boot+Docker+React. Jaakko Saaris
 - Simulates FIX by creating an Acceptor (execution broker, seller) and Initiator (investment manager, buyer) services
 - The services communicate in raw FIX
 - The services are Spring Boot applications running in Docker containers
+- Acceptor actively outputs the traffic in its FIX ports to a websocket
 - Initiator provides a REST interface to send commands over a REST client
 - React GUI
 
