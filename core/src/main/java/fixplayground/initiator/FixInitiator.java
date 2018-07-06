@@ -1,5 +1,7 @@
 package fixplayground.initiator;
 
+import fixplayground.SessionLogger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import quickfix.*;
@@ -8,6 +10,9 @@ import quickfix.*;
 @Profile("initiator")
 public class FixInitiator implements Application {
 
+    @Autowired
+    private SessionLogger logger;
+
     @Override
     public void onCreate(SessionID sessionID) {
 
@@ -15,7 +20,7 @@ public class FixInitiator implements Application {
 
     @Override
     public void onLogon(SessionID sessionID) {
-
+        this.logger.createLog(sessionID);
     }
 
     @Override

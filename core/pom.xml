@@ -30,25 +30,48 @@
         </dependency>
     </dependencies>
 
+    <properties>
+        <acceptor.temp.dir>../docker/acceptor/temp</acceptor.temp.dir>
+        <initiator.temp.dir>../docker/initiator/temp</initiator.temp.dir>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.3.RELEASE</version>
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.6</version>
                 <executions>
                     <execution>
-                        <id>copy-resources</id>
+                        <id>copy-acceptor</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>../docker/acceptor/temp</outputDirectory>
-                            <outputDirectory>../docker/initiator/temp</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <outputDirectory>${acceptor.temp.dir}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>target/</directory>
+                                    <include>${project.build.finalName}.jar</include>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-initiator</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <overwrite>true</overwrite>
+                            <outputDirectory>${initiator.temp.dir}</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>target/</directory>
@@ -58,6 +81,22 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>..</directory>
+                            <includes>
+                                <include>**/temp/**</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
             </plugin>
         </plugins>
     </build>
