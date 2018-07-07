@@ -5,6 +5,7 @@ npm install
 npm install --save react-websocket
 npm install --save react-dom
 npm install --save react-bootstrap
+npm install --save cors
 
 
 

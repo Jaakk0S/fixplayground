@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Terminal from './Terminal';
+import Main from './Main';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Terminal />, document.getElementById('root'));
+ReactDOM.render(<Main />, document.getElementById('root'));
 registerServiceWorker();

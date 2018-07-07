@@ -1,4 +1,5 @@
 import React from 'react';
+import Panel from 'react-bootstrap/lib/Panel';
 class Terminal extends React.Component {
     constructor(props) {
         super(props);
@@ -24,9 +25,14 @@ class Terminal extends React.Component {
     }
 
     render() {
-        return (<pre>
+        return (
+            <div>
+            <Panel>
+                <Panel.Heading>Acceptor FIX port</Panel.Heading>
+            </Panel>
+            <pre>
             {this.state.text}
-        </pre>);
+        </pre></div>);
     }
 }
 
