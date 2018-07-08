@@ -1,11 +1,13 @@
 import React from 'react';
 import Panel from 'react-bootstrap/lib/Panel';
+import Button from 'react-bootstrap/lib/Button';
 class Terminal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             ws: new WebSocket('ws://localhost:12345/'),
-            text: ""
+            text: "",
+            frozen: false
         };
         this.state.ws.onopen = () => {
             this.setState((prevState, props) => {
@@ -20,19 +22,34 @@ class Terminal extends React.Component {
         this.state.ws.onmessage = (event) => {
             this.setState((prevState, props) => {
                 return {text: this.state.text + event.data + '\n'};
-            })
+            });
+            this.props.addToDictionary(event.data);
+            if (!this.state.frozen) {
+                this.textLog.scrollTop = this.textLog.scrollHeight;
+            }
         };
     }
 
+    freezeConsole() {
+        this.setState({frozen: !this.state.frozen});
+    }
+
     render() {
+        let buttonStyle = this.state.frozen ? "primary" : "default";
         return (
-            <div>
+            <div style={{'height': '100%', 'width': '100%'}}>
             <Panel>
-                <Panel.Heading>Acceptor FIX port</Panel.Heading>
+                <Panel.Heading>Acceptor raw FIX traffic
+                    <Button style={{float: 'right'}} bsSize="small" bsStyle={buttonStyle}
+                            onClick={this.freezeConsole.bind(this)}
+                            ref={switchButton => this.switchButton = switchButton}>Freeze console</Button>
+                </Panel.Heading>
+                <textarea value={this.state.text} ref={textLog => this.textLog = textLog}
+                    style={{'height': '50vh', 'width': '100%', resize: 'none'}}/>
+
             </Panel>
-            <pre>
-            {this.state.text}
-        </pre></div>);
+
+        </div>);
     }
 }
 

@@ -19,24 +19,15 @@ import quickfix.SocketInitiator;
 @Profile("initiator")
 public class FixInitiatorRunner extends AbstractFixRunner {
 
-    public SessionID sessionId;
-
-    public String getSessionSetting(String key) {
-        try {
-            return this.sessionSettings.getString(this.sessionId, key);
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage());
-            return null;
-        }
-    }
+    public Initiator initiator;
 
     @Override
     public void run(ApplicationContext ctx) throws Exception {
         super.initDefaults();
-        Initiator initiator = new SocketInitiator(
+        this.initiator = new SocketInitiator(
                 application, messageStoreFactory, sessionSettings, logFactory, messageFactory
         );
         LOGGER.info("Starting initiator");
-        initiator.start();
+        this.initiator.start();
     }
 }

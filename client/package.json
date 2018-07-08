@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv": "^6.5.2",
+    "ajv-keywords": "^3.2.0",
     "react": "16.4.1",
-    "react-bootstrap": "0.32.1",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "16.4.1",
+    "react-global-state": "^0.1.2",
     "react-scripts": "1.1.4",
     "react-websocket": "2.0.0"
   },
@@ -16,5 +19,12 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8081"
+  "proxy": {
+    "/0": {
+      "target": "http://localhost:8081"
+    },
+    "/1": {
+      "target": "http://localhost:8082"
+    }
+  }
 }

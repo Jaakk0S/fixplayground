@@ -8,22 +8,18 @@ import quickfix.Session;
 import quickfix.field.TestReqID;
 import quickfix.fix42.TestRequest;
 
+import java.util.UUID;
+
 @Component
 @Profile("initiator")
 public class MessageSender {
 
     @Autowired
     private FixInitiatorRunner runner;
-
-    private boolean sendWithSenderAndTarget(Message msg) throws Exception {
-        String senderCompID = this.runner.getSessionSettings().getString("SenderCompID");
-        String targetCompID = this.runner.getSessionSettings().getString("TargetCompID");
-        return Session.sendToTarget(msg, senderCompID, targetCompID);
-    }
-
+    
     public boolean sendTest() throws Exception {
-        Message msg = new TestRequest(new TestReqID("12345"));
-        return sendWithSenderAndTarget(msg);
+        Message msg = new TestRequest(new TestReqID(UUID.randomUUID().toString()));
+        return Session.sendToTarget(msg, this.runner.initiator.getSessions().get(0));
     }
 
 }

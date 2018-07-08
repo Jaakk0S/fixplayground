@@ -18,7 +18,6 @@ public class FixInitiator implements Application {
 
     @Override
     public void onCreate(SessionID sessionID) {
-        this.runner.sessionId = sessionID;
         this.logger.createLog(sessionID);
     }
 
@@ -29,7 +28,6 @@ public class FixInitiator implements Application {
 
     @Override
     public void onLogout(SessionID sessionID) {
-        this.runner.sessionId = null;
     }
 
     @Override
