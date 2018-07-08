@@ -8,7 +8,7 @@ class Main extends React.Component {
     render() {
         return (
             <div>
-                <PageHeader style={{'text-align': 'center'}}>
+                <PageHeader style={{'textAlign': 'center'}}>
                     FIX demo
                 </PageHeader>
                 <div>

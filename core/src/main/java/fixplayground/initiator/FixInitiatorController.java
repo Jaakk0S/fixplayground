@@ -1,8 +1,8 @@
 package fixplayground.initiator;
 
-import fixplayground.MessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,10 +15,11 @@ public class FixInitiatorController {
     private MessageSender messageSender;
 
 
-    @RequestMapping("/")
-    public String command(@RequestParam(name="command") String command) throws Exception {
+    @RequestMapping("/{instanceid}")
+    public String command(@RequestParam(name="command") String command,
+                          @PathVariable("instanceid") long instanceid) throws Exception {
         switch (command) {
-            case "test": this.messageSender.sendTest();
+            case "test": return this.messageSender.sendTest() ? "success" : "fail";
         }
         return "Unknown command";
     }

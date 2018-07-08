@@ -12,11 +12,13 @@ class InitiatorPanel extends React.Component {
     }
 
     testRequest() {
-        fetch("http://" + NETWORK.INITIATORS[this.state.initiatorId] + "/?command=test");
+        fetch("http://" + "localhost:3000" + "/" + this.state.initiatorId + "?command=test")
+            .then(response => { return response.json; });
+        //fetch("http://" + NETWORK.INITIATORS[this.state.initiatorId] + "/" + this.state.initiatorId + "?command=test");
     }
 
     dictionaryQuery(msg) {
-        fetch("http://" + NETWORK.INITIATORS[this.state.initiatorId] + "/?command=test");
+//        fetch("http://" + NETWORK.INITIATORS[this.state.initiatorId] + "/?command=test");
     }
 
 
@@ -26,8 +28,7 @@ class InitiatorPanel extends React.Component {
                 <Panel>
                     <Panel.Heading>Initiator {Number(this.state.initiatorId) + 1}</Panel.Heading>
                 </Panel>
-                <Button onClick={this.testRequest()}>
-                    Send TestReq</Button>
+                <Button onClick={this.testRequest.bind(this)}>Send TestReq</Button>
             </div>
         );
     }

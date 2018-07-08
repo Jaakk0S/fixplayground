@@ -11,21 +11,25 @@ import quickfix.*;
 public class FixInitiator implements Application {
 
     @Autowired
+    private FixInitiatorRunner runner;
+
+    @Autowired
     private SessionLogger logger;
 
     @Override
     public void onCreate(SessionID sessionID) {
-
-    }
-
-    @Override
-    public void onLogon(SessionID sessionID) {
+        this.runner.sessionId = sessionID;
         this.logger.createLog(sessionID);
     }
 
     @Override
-    public void onLogout(SessionID sessionID) {
+    public void onLogon(SessionID sessionID) {
 
+    }
+
+    @Override
+    public void onLogout(SessionID sessionID) {
+        this.runner.sessionId = null;
     }
 
     @Override

@@ -1,10 +1,7 @@
 package fixplayground;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import quickfix.SessionNotFound;
 
 @RestController
@@ -13,13 +10,14 @@ public class FixController {
     @Autowired
     private FixRunner runner;
 
-    @RequestMapping("/ping")
-    public String command() throws Exception {
+    @RequestMapping("/{instanceid}/ping")
+    public String command(@PathVariable("instanceid") long instanceid) throws Exception {
         return "ping";
     }
 
-    @RequestMapping("/fieldname")
-    public String fieldName(@RequestParam(name="code") int code) {
+    @RequestMapping("/{instanceid}/fieldname")
+    public String fieldName(@RequestParam(name="code") int code,
+                            @PathVariable("instanceid") long instanceid) {
         return this.runner.getDataDictionary().getFieldName(code);
     }
 

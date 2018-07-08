@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import quickfix.*;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class AbstractFixRunner implements FixRunner {
@@ -40,6 +41,7 @@ public abstract class AbstractFixRunner implements FixRunner {
         in.close();
         String settings = new String(bytes, "UTF-8");
         Map<String, String> env = System.getenv();
+        Map<String, String> overriddenSettings = new HashMap<>();
         for (String key : env.keySet()) {
             if (key.startsWith(SESSION_VAR_PREFIX)) {
                 String[] settingStr = key.split("\\.");
@@ -48,11 +50,16 @@ public abstract class AbstractFixRunner implements FixRunner {
                 LOGGER.info("Setting "+setting+" from environment: " + value);
                 settings = settings.replaceFirst(setting + ".*=.*",
                         setting + "=" + value);
+                overriddenSettings.put(setting, value);
             }
         }
         LOGGER.info("Session settings after environment overrides:\n");
         LOGGER.info(settings);
         this.sessionSettings = new SessionSettings(new ByteArrayInputStream(settings.getBytes()));
+        // we also need to manually insert these settings because they are not stored otherwise
+        for (String key: overriddenSettings.keySet()) {
+            this.sessionSettings.setString(key, overriddenSettings.get(key));
+        }
     }
 
     protected void initDefaults() throws Exception {

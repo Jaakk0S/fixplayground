@@ -12,11 +12,23 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import quickfix.Dictionary;
 import quickfix.Initiator;
+import quickfix.SessionID;
 import quickfix.SocketInitiator;
 
 @Component
 @Profile("initiator")
 public class FixInitiatorRunner extends AbstractFixRunner {
+
+    public SessionID sessionId;
+
+    public String getSessionSetting(String key) {
+        try {
+            return this.sessionSettings.getString(this.sessionId, key);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            return null;
+        }
+    }
 
     @Override
     public void run(ApplicationContext ctx) throws Exception {
