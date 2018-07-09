@@ -5,7 +5,7 @@ class Terminal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ws: new WebSocket('ws://localhost:12345/'),
+            ws: new WebSocket('ws://' + window.location.hostname + '/ws'),
             text: "",
             frozen: false
         };

@@ -12,7 +12,7 @@ class InitiatorPanel extends React.Component {
     }
 
     testRequest() {
-        fetch("http://" + "localhost:3000/" + this.state.initiatorId + "?command=test")
+        fetch("/0?command=test")
             .then(response => { return response; });
     }
 

@@ -9,7 +9,7 @@ class Dictionary extends React.Component {
     }
 
     fieldQuery(code) {
-        fetch("http://" + "localhost:3000" + "/0/fieldname?code=" + code)
+        fetch("/0/fieldname?code=" + code)
             .then(response => {
                 return response.text();
             }).then((text) => {
