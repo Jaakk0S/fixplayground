@@ -14,8 +14,6 @@ A FIX protocol demo with Java+QuickFIX/J+Spring Boot+Docker+React. Jaakko Saaris
 - Linux
 - Maven 3
 - Docker
-- Node
-- NPM
  
 ## Building Spring Boot jar
 
@@ -27,16 +25,13 @@ Will produce a single jar under target/. Running initiator/acceptor uses Spring 
 
     ./docker-package.sh
 
-This will build and produce 2 docker containers
+This will build and produce 3 docker containers
 
 ## Running Docker containers
 
     ./docker-run.sh
 
-This will start 3 containers with the respective environment. They will be bound to
-- 8080: acceptor
-- 8081: initiator1
-- 8082: initiator2
+This will start 4 containers with the respective environment.
 
 The initiators have different settings.
 
