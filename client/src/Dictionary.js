@@ -8,7 +8,7 @@ class Dictionary extends React.Component {
         }
     }
 
-    dictionaryQuery(code) {
+    fieldQuery(code) {
         fetch("http://" + "localhost:3000" + "/0/fieldname?code=" + code)
             .then(response => {
                 return response.text();
@@ -19,11 +19,11 @@ class Dictionary extends React.Component {
             });
     }
 
-    addToDictionary(string) {
-        string.split("|").forEach((element) => {
+    addToDictionary(entrystring) {
+        entrystring.split("|").forEach((element) => {
             var val = element.trim().split("=")[0];
             if (val && !isNaN(val)) {
-                this.dictionaryQuery(val);
+                this.fieldQuery(val);
             }
         });
     }

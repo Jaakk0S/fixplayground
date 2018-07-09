@@ -39,7 +39,7 @@ class Terminal extends React.Component {
         return (
             <div style={{'height': '100%', 'width': '100%'}}>
             <Panel>
-                <Panel.Heading>Acceptor raw FIX traffic
+                <Panel.Heading>ECN-Server-Company raw FIX traffic
                     <Button style={{float: 'right'}} bsSize="small" bsStyle={buttonStyle}
                             onClick={this.freezeConsole.bind(this)}
                             ref={switchButton => this.switchButton = switchButton}>Freeze console</Button>

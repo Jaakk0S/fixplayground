@@ -2,6 +2,8 @@
 files
 fixplayground.iml
 logs
-target
+**/target
 **/temp
-**/package*.json
+client/**/node_modules
+client/node
+client/build

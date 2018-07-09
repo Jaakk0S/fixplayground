@@ -18,10 +18,6 @@
         <module>initiator</module>
     </modules>
 
-    <properties>
-        <aws.repository>750614674544.dkr.ecr.eu-west-2.amazonaws.com</aws.repository>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>

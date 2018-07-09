@@ -9,9 +9,14 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <docker.repository>750614674544.dkr.ecr.eu-west-2.amazonaws.com</docker.repository>
+    </properties>
+
     <modules>
         <module>core</module>
         <module>docker</module>
+        <module>client</module>
     </modules>
 
     <parent>

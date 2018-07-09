@@ -1,11 +1,3 @@
-RUN
-install node
-install npm
-npm install
-npm install --save react-websocket
-npm install --save react-dom
-npm install --save react-bootstrap
-npm install --save cors
-
-
-
+FROM nginx
+COPY build /usr/share/nginx/html
+COPY docker.default.conf /etc/nginx/conf.d/default.conf

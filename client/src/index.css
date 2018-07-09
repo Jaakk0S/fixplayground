@@ -3,7 +3,14 @@ body {
   padding: 10px;
   font-family: sans-serif;
 }
-div {
-    margin: 0px;
-    padding: 0px;
+.explanation {
+    #width: 90% !important;
+}
+.expl-image {
+    height: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+
 }
