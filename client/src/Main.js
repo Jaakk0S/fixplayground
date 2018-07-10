@@ -44,7 +44,7 @@ class Main extends React.Component {
                     </div>
                     <div style={{textAlign: 'right', float: 'right'}}>
                         <Button bsSize="large" bsStyle="primary" onClick={this.showExplain.bind(this)}>
-                            Explain dis</Button><br/>
+                            Explain this</Button><br/>
                         <a target="_blank" href="https://github.com/Jaakk0S/fixplayground">Github</a>
                     </div>
                     <Modal show={this.state.showExplain} onHide={this.hideExplain.bind(this)}
