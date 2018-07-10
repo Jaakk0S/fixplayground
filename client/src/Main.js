@@ -42,7 +42,7 @@ class Main extends React.Component {
                         <i>Sry, only TestReq so far...</i>
                     </div>
                     <div style={{textAlign: 'right', float: 'right'}}>
-                        <Button bsSize="large" bsStyle="default" onClick={this.showExplain.bind(this)}>
+                        <Button bsSize="large" bsStyle="info" onClick={this.showExplain.bind(this)}>
                             Explain dis</Button><br/>
                         <a target="_blank" href="https://github.com/Jaakk0S/fixplayground">Github</a>
                     </div>
