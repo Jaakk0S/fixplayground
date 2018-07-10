@@ -26,9 +26,8 @@ class Main extends React.Component {
 
     render() {
         return (
-            <div style={{'height': '85vh', 'width': '90vw'}}>
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossOrigin="anonymous"/>
-                <PageHeader style={{'textAlign': 'center'}}>
+            <div style={{'height': '100%', 'width': '100%', margin:'auto'}}>
+                <PageHeader>
                     FIX demo
                 </PageHeader>
                 <div>
@@ -39,10 +38,12 @@ class Main extends React.Component {
                         <InitiatorPanel instanceId='1'/>
                     </div>
                     <div style={{'display': 'inline-block'}}>
-                        <i>Sry, only TestReq so far...</i>
+                        &nbsp;Technologies: FIX protocol, Java 8, Linux, Spring Boot, Docker, AWS ECS, ReactJS, Nginx, Websockets, Maven
+                        <br/>
+                        &nbsp;<i>Sry, only TestReq so far...</i>
                     </div>
                     <div style={{textAlign: 'right', float: 'right'}}>
-                        <Button bsSize="large" bsStyle="info" onClick={this.showExplain.bind(this)}>
+                        <Button bsSize="large" bsStyle="primary" onClick={this.showExplain.bind(this)}>
                             Explain dis</Button><br/>
                         <a target="_blank" href="https://github.com/Jaakk0S/fixplayground">Github</a>
                     </div>

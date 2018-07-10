@@ -21,7 +21,7 @@ class InitiatorPanel extends React.Component {
             <div>
                 <Panel>
                     <Panel.Heading>Client{Number(this.state.initiatorId) + 1}</Panel.Heading>
-                    <Button bsStyle="info" onClick={this.testRequest.bind(this)}>Send TestReq</Button>
+                    <Button bsStyle="primary" onClick={this.testRequest.bind(this)}>Send TestReq</Button>
                 </Panel>
             </div>
         );

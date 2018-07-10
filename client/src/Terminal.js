@@ -35,13 +35,13 @@ class Terminal extends React.Component {
     }
 
     render() {
-        let buttonStyle = this.state.frozen ? "warning" : "info";
+        let buttonStyle = this.state.frozen ? "danger" : "primary";
         let buttonText = this.state.frozen ? "Unfreeze console" : "Freeze console";
         return (
             <div style={{'height': '100%', 'width': '100%'}}>
             <Panel>
                 <Panel.Heading>ECN-Server-Company raw FIX traffic
-                    <Button style={{float: 'right'}} bsSize="small" bsStyle={buttonStyle}
+                    <Button style={{float: 'right'}} bsSize="xs" bsStyle={buttonStyle}
                             onClick={this.freezeConsole.bind(this)}
                             ref={switchButton => this.switchButton = switchButton}>{buttonText}</Button>
                 </Panel.Heading>
