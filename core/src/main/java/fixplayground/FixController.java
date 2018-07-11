@@ -1,6 +1,7 @@
 package fixplayground;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import quickfix.SessionNotFound;
 
@@ -16,8 +17,7 @@ public class FixController {
     }
 
     @RequestMapping("/{instanceid}/fieldname")
-    public String fieldName(@RequestParam(name="code") int code,
-                            @PathVariable("instanceid") long instanceid) {
+    public String fieldName(@PathVariable("instanceid") long instanceid, @RequestParam(name="code") int code) {
         return this.runner.getDataDictionary().getFieldName(code);
     }
 
@@ -26,9 +26,9 @@ public class FixController {
         return "Session not found!";
     }
 
-    @ExceptionHandler(Exception.class)
+    /*@ExceptionHandler(Exception.class)
     public String help() {
         return "Supported commands:\n"+
                 "- test: forces a heartbeat";
-    }
+    }*/
 }
